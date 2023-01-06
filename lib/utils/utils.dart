@@ -30,4 +30,10 @@ class Utils {
       backgroundColor: Colors.blueAccent,
     ));
   }
+
+  static void FieldFocusChange(
+      BuildContext context, FocusNode current, FocusNode nextNode) {
+    current.unfocus();
+    FocusScope.of(context).requestFocus(nextNode);
+  }
 }
