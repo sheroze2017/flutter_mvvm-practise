@@ -1,21 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_flutter/utils/routes/routes_name.dart';
-import 'package:mvvm_flutter/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../resources/components/round_button.dart';
 import '../utils/utils.dart';
+import '../view_model/auth_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpViewState extends State<SignUpView> {
   ValueNotifier<bool> _obscurePassword = ValueNotifier<bool>(true);
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Login'),
+          title: Text('SignUo'),
         ),
         body: SafeArea(
           child: Column(
@@ -80,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * 0.09,
               ),
               RoundButton(
-                loading: authViewModel.loading,
+                loading: authViewModel.signuploading,
                 onPress: () {
                   if (_emailcontroller.text.isEmpty) {
                     Utils.flushbarErrorMessage('Enter Email', context);
@@ -98,16 +99,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     authViewModel.LoginApi(data, context);
                   }
                 },
-                title: 'Login',
+                title: 'SignUp',
               ),
               SizedBox(
                 height: height * 0.05,
               ),
               InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesName.signup);
+                    Navigator.pushNamed(context, RoutesName.login);
                   },
-                  child: Text('Dont have an account?'))
+                  child: Text('Already have an account?'))
             ],
           ),
         ));
