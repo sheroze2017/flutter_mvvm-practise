@@ -40,7 +40,7 @@ class _SignUpViewState extends State<SignUpView> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: Text('SignUo'),
+          title: Text('SignUp'),
         ),
         body: SafeArea(
           child: Column(
